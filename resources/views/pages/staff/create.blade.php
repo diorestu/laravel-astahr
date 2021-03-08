@@ -1,0 +1,98 @@
+@extends('layouts.admin')
+
+@section('title')
+    Tambah Data Invoice - Asta HR
+@endsection
+
+@push('addon-style')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.23/sl-1.3.1/datatables.min.css" />
+@endpush
+
+@section('content')
+    <!--begin::Content-->
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+
+        <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+            <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                <div class="d-flex align-items-center flex-wrap mr-1">
+                    <div data-aos="zoom-in" class="d-flex align-items-baseline mr-5">
+                        <ul class="breadcrumb breadcrumb-transparent font-weight-200 breadcrumb-dot p-0 my-2 font-size-sm">
+                            <li class="breadcrumb-item">
+                                <a href="" class="text-muted">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="" class="text-muted">Tambah Data Surat</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card card-custom card-stretch gutter-b">
+                            <div class="card-header">
+                                <h3 class="card-title font-weight-bolder text-dark">Tambah Data Invoice</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        <img width="100px" src="{{ asset('assets/media/logos/logo-kotak.png') }}" alt="">
+                                        <form action="{{ route('letter.store') }}" method="post"
+                                            enctype="multipart/form-data">
+                                            @csrf
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Nomor Surat</label>
+                                                        <input type="text" class="form-control form-control-solid text-muted"
+                                                        name="nomor" value="" autocomplete readonly/>
+                                                        
+                                                    </input>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Tujuan</label>
+                                                        <input type="text" class="form-control form-control-solid"
+                                                            name="tujuan" autocomplete />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleTextarea">Deskripsi</label>
+                                                        <textarea class="form-control form-control-solid" rows="3"
+                                                            name="deskripsi" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col text-right">
+                                                    <button type="submit" class="btn btn-success px-5 mr-2">
+                                                        Simpan
+                                                    </button>
+                                                    <a type="reset" href="{{ route('letter.index') }}" class="btn btn-default px-6">
+                                                        Batal
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
